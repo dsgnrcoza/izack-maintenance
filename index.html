@@ -74,14 +74,13 @@
     position: relative; overflow: hidden;
   }
   #hero .bg {
-    position: absolute; inset: -30%; z-index: 0;
+    position: fixed; inset: 0; z-index: -1;
     background-image: url('2012.i101.019_garbage_recycling_isometric.jpg');
     background-size: cover; background-position: center;
     filter: brightness(0.45) saturate(0.75);
-    will-change: transform;
   }
   #hero .bg-overlay {
-    position: absolute; inset: 0; z-index: 1;
+    position: fixed; inset: 0; z-index: -1;
     background: linear-gradient(160deg, rgba(10,10,10,0.6) 0%, rgba(10,28,10,0.5) 100%);
   }
   #hero .content {
@@ -361,11 +360,7 @@
   document.getElementById('menuClose').addEventListener('click', () => menu.classList.remove('open'));
   document.querySelectorAll('.menu-link').forEach(l => l.addEventListener('click', () => menu.classList.remove('open')));
 
-  // Parallax
-  const heroBg = document.querySelector('#hero .bg');
-  window.addEventListener('scroll', () => {
-    heroBg.style.transform = `translateY(${window.scrollY * 0.4}px)`;
-  }, { passive: true });
+  // Parallax handled by position:fixed on .bg — no JS needed
 
   // Service modal
   const overlay = document.getElementById('modal-overlay');
