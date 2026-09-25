@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Izack Rubbish & Garden Removal</title>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111;
+    --green: #4caf50;
+    --green-light: #66bb6a;
+    --white: #fff;
+    --gray: #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; background: var(--black); color: var(--white); }
+
+  /* NO COPY PROTECTION */
+  * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  img { pointer-events: none; -webkit-user-drag: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,10,10,0.95); backdrop-filter: blur(10px);
+    padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(76,175,80,0.3);
+  }
+  nav img { height: 50px; pointer-events: none; }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a { color: var(--white); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+  nav ul a:hover { color: var(--green); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d1f0d 100%);
+    text-align: center; padding: 6rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(76,175,80,0.08) 0%, transparent 70%);
+  }
+  #hero .logo { width: min(400px, 85vw); margin-bottom: 1.5rem; pointer-events: none; }
+  #hero h1 {
+    font-size: clamp(1.6rem, 5vw, 3rem); font-weight: 900; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--white);
+    text-shadow: 0 0 30px rgba(76,175,80,0.4);
+    margin-bottom: 1rem;
+  }
+  #hero h1 span { color: var(--green); }
+  #hero p { font-size: 1.1rem; color: #ccc; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .tagline {
+    font-style: italic; font-size: 1.3rem; color: var(--green); font-weight: 600;
+    margin-bottom: 2.5rem;
+  }
+  .btn {
+    display: inline-block; padding: 1rem 2.5rem; background: var(--green);
+    color: #000; font-weight: 800; font-size: 1rem; text-decoration: none;
+    border-radius: 4px; letter-spacing: 1px; text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn:hover { background: var(--green-light); transform: translateY(-2px); }
+
+  /* SERVICES */
+  #services {
+    padding: 5rem 2rem;
+    background: var(--dark);
+  }
+  .section-title {
+    text-align: center; font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .section-title span { color: var(--green); }
+  .divider {
+    width: 60px; height: 4px; background: var(--green);
+    margin: 0.75rem auto 3rem;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .card {
+    background: #1a1a1a; border: 1px solid rgba(76,175,80,0.2);
+    border-radius: 8px; padding: 2rem; text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .card:hover { border-color: var(--green); transform: translateY(-4px); }
+  .card-icon {
+    width: 70px; height: 70px; border-radius: 50%;
+    border: 2px solid var(--green); display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem; font-size: 2rem;
+  }
+  .card h3 { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem; }
+  .card p { color: #aaa; line-height: 1.6; font-size: 0.95rem; }
+
+  /* WHY US */
+  #why {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #0d1f0d 0%, #0a0a0a 100%);
+  }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem; max-width: 900px; margin: 0 auto; text-align: center;
+  }
+  .why-item .num {
+    font-size: 3rem; font-weight: 900; color: var(--green); line-height: 1;
+  }
+  .why-item h4 { font-size: 1rem; font-weight: 700; margin-top: 0.5rem; text-transform: uppercase; }
+  .why-item p { color: #888; font-size: 0.9rem; margin-top: 0.25rem; }
+
+  /* CONTACT / FORM */
+  #contact {
+    padding: 5rem 2rem;
+    background: var(--dark);
+  }
+  .contact-wrap {
+    max-width: 700px; margin: 0 auto;
+  }
+  .contact-info {
+    display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-bottom: 3rem;
+  }
+  .contact-chip {
+    background: #1a1a1a; border: 1px solid rgba(76,175,80,0.3);
+    border-radius: 50px; padding: 0.75rem 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem; font-weight: 600;
+  }
+  .contact-chip span { font-size: 1.2rem; }
+  .contact-chip a { color: var(--white); text-decoration: none; }
+  .contact-chip a:hover { color: var(--green); }
+
+  form { display: flex; flex-direction: column; gap: 1rem; }
+  form input, form textarea, form select {
+    background: #1a1a1a; border: 1px solid rgba(76,175,80,0.2);
+    border-radius: 4px; padding: 0.9rem 1rem; color: var(--white); font-size: 1rem;
+    outline: none; transition: border-color 0.2s; font-family: inherit;
+    -webkit-user-select: text; user-select: text;
+  }
+  form input:focus, form textarea:focus, form select:focus { border-color: var(--green); }
+  form select option { background: #1a1a1a; }
+  form textarea { resize: vertical; min-height: 120px; }
+  form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  form button {
+    padding: 1rem; background: var(--green); color: #000; font-weight: 800;
+    font-size: 1rem; border: none; border-radius: 4px; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 1px; transition: background 0.2s;
+  }
+  form button:hover { background: var(--green-light); }
+
+  /* FOOTER */
+  footer {
+    background: #000; border-top: 1px solid rgba(76,175,80,0.2);
+    padding: 1.5rem 2rem; text-align: center; color: #555; font-size: 0.85rem;
+  }
+  footer span { color: var(--green); }
+
+  @media (max-width: 600px) {
+    form .row { grid-template-columns: 1fr; }
+    nav ul { gap: 1rem; font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <img src="IZACK LOGO.png" alt="Izack Logo">
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <img class="logo" src="IZACK LOGO.png" alt="Izack Rubbish & Garden Removal">
+    <p class="tagline">"Your Waste, Our Work"</p>
+    <p>Fast, reliable rubbish and garden removal — household, garage, building waste, green refuse and more.</p>
+    <br>
+    <a href="#contact" class="btn">Get a Free Quote</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <h2 class="section-title">Our <span>Services</span></h2>
+  <div class="divider"></div>
+  <div class="services-grid">
+    <div class="card">
+      <div class="card-icon">🗑️</div>
+      <h3>Rubbish Removal</h3>
+      <p>Household, garage, and building waste cleared quickly and responsibly. No job too big or too small.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌿</div>
+      <h3>Garden Refuse Removal</h3>
+      <p>Branches, leaves, grass clippings, and all green waste — we leave your garden clean and tidy.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚛</div>
+      <h3>Reliable & Fast</h3>
+      <p>We show up on time and get the job done. Clean spaces, healthier environments — every time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <h2 class="section-title">Why Choose <span>Izack</span></h2>
+  <div class="divider"></div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="num">✓</div>
+      <h4>Same-Day Service</h4>
+      <p>Call us and we're there</p>
+    </div>
+    <div class="why-item">
+      <div class="num">✓</div>
+      <h4>Fair Pricing</h4>
+      <p>No hidden fees, honest quotes</p>
+    </div>
+    <div class="why-item">
+      <div class="num">✓</div>
+      <h4>Eco-Friendly</h4>
+      <p>Responsible waste disposal</p>
+    </div>
+    <div class="why-item">
+      <div class="num">✓</div>
+      <h4>Fully Equipped</h4>
+      <p>Right tools for every job</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <h2 class="section-title">Get In <span>Touch</span></h2>
+    <div class="divider"></div>
+    <div class="contact-info">
+      <div class="contact-chip"><span>📞</span><a href="tel:0762735805">076 273 5805</a></div>
+      <div class="contact-chip"><span>✉️</span><a href="mailto:izackmaintenance@gmail.com">izackmaintenance@gmail.com</a></div>
+    </div>
+
+    <form action="https://formsubmit.co/izackmaintenance@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New Quote Request - Izack Website">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <div class="row">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+      </div>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <select name="service" required>
+        <option value="" disabled selected>Select a Service</option>
+        <option value="Rubbish Removal">Rubbish Removal</option>
+        <option value="Garden Refuse Removal">Garden Refuse Removal</option>
+        <option value="Both">Both Services</option>
+        <option value="Other">Other / Not Sure</option>
+      </select>
+      <textarea name="message" placeholder="Tell us about the job — location, size, any details..."></textarea>
+      <button type="submit">Send Quote Request</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 <span>Izack Rubbish & Garden Removal</span> · All rights reserved · 076 273 5805
+</footer>
+
+<script>
+  // Disable right-click
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  // Disable drag on images
+  document.querySelectorAll('img').forEach(i => i.addEventListener('dragstart', e => e.preventDefault()));
+</script>
+</body>
+</html>
