@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Izack Rubbish & Garden Removal</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --black: #0a0a0a;
@@ -11,156 +12,147 @@
     --green: #4caf50;
     --green-light: #66bb6a;
     --white: #fff;
-    --gray: #888;
+    --radius: 10px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', sans-serif; background: var(--black); color: var(--white); }
-
-  /* NO COPY PROTECTION */
+  body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); }
   * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
   img { pointer-events: none; -webkit-user-drag: none; }
 
   /* NAV */
   nav {
     position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(10,10,10,0.95); backdrop-filter: blur(10px);
-    padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid rgba(76,175,80,0.3);
+    background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
+    padding: 1rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(76,175,80,0.25);
   }
-  nav img { height: 50px; pointer-events: none; }
-  nav ul { list-style: none; display: flex; gap: 2rem; }
-  nav ul a { color: var(--white); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+  nav img { height: 52px; mix-blend-mode: screen; }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a { color: #ddd; text-decoration: none; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px; transition: color 0.2s; }
   nav ul a:hover { color: var(--green); }
 
   /* HERO */
   #hero {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d1f0d 100%);
-    text-align: center; padding: 6rem 2rem 4rem;
+    text-align: center; padding: 7rem 2rem 4rem;
     position: relative; overflow: hidden;
   }
-  #hero::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(76,175,80,0.08) 0%, transparent 70%);
+  #hero .bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80&auto=format');
+    background-size: cover; background-position: center;
+    filter: brightness(0.25) saturate(0.5);
   }
-  #hero .logo { width: min(400px, 85vw); margin-bottom: 1.5rem; pointer-events: none; }
+  #hero .bg-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,30,10,0.7) 100%);
+  }
+  #hero .content { position: relative; z-index: 2; }
+  #hero .logo { width: min(360px, 80vw); margin-bottom: 1.5rem; mix-blend-mode: screen; }
   #hero h1 {
-    font-size: clamp(1.6rem, 5vw, 3rem); font-weight: 900; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--white);
-    text-shadow: 0 0 30px rgba(76,175,80,0.4);
-    margin-bottom: 1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    letter-spacing: 4px; line-height: 1;
+    color: var(--white);
+    text-shadow: 0 0 40px rgba(76,175,80,0.35);
+    margin-bottom: 0.75rem;
   }
   #hero h1 span { color: var(--green); }
-  #hero p { font-size: 1.1rem; color: #ccc; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
-  .tagline {
-    font-style: italic; font-size: 1.3rem; color: var(--green); font-weight: 600;
-    margin-bottom: 2.5rem;
-  }
+  #hero p { font-size: 1.05rem; color: #bbb; margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  .tagline { font-style: italic; font-size: 1.2rem; color: var(--green); font-weight: 700; margin-bottom: 1.5rem; }
+
+  .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   .btn {
-    display: inline-block; padding: 1rem 2.5rem; background: var(--green);
-    color: #000; font-weight: 800; font-size: 1rem; text-decoration: none;
-    border-radius: 4px; letter-spacing: 1px; text-transform: uppercase;
-    transition: background 0.2s, transform 0.2s;
+    display: inline-block; padding: 0.95rem 2.2rem;
+    font-weight: 800; font-size: 0.95rem; text-decoration: none;
+    border-radius: var(--radius); letter-spacing: 1px; text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    border: 2px solid transparent;
   }
-  .btn:hover { background: var(--green-light); transform: translateY(-2px); }
+  .btn-primary { background: var(--green); color: #000; border-color: var(--green); }
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(76,175,80,0.45); }
+  .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.5); }
+  .btn-outline:hover { border-color: var(--green); color: var(--green); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(76,175,80,0.2); }
 
   /* SERVICES */
-  #services {
-    padding: 5rem 2rem;
-    background: var(--dark);
-  }
-  .section-title {
-    text-align: center; font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
-    margin-bottom: 0.5rem;
-  }
+  #services { padding: 5.5rem 2rem; background: var(--dark); }
+  .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: 3px; margin-bottom: 0.5rem; }
   .section-title span { color: var(--green); }
-  .divider {
-    width: 60px; height: 4px; background: var(--green);
-    margin: 0.75rem auto 3rem;
-  }
-  .services-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
-  }
+  .divider { width: 60px; height: 4px; background: var(--green); margin: 0.75rem auto 3rem; border-radius: 2px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1100px; margin: 0 auto; }
+  @media(max-width:768px){ .services-grid { grid-template-columns: 1fr; } }
   .card {
-    background: #1a1a1a; border: 1px solid rgba(76,175,80,0.2);
-    border-radius: 8px; padding: 2rem; text-align: center;
-    transition: border-color 0.3s, transform 0.3s;
+    background: #1a1a1a; border: 1px solid rgba(76,175,80,0.18);
+    border-radius: var(--radius); padding: 1.75rem 1.5rem; text-align: center;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   }
-  .card:hover { border-color: var(--green); transform: translateY(-4px); }
-  .card-icon {
-    width: 70px; height: 70px; border-radius: 50%;
-    border: 2px solid var(--green); display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1.5rem; font-size: 2rem;
-  }
-  .card h3 { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem; }
-  .card p { color: #aaa; line-height: 1.6; font-size: 0.95rem; }
+  .card:hover { border-color: var(--green); transform: translateY(-5px); box-shadow: 0 12px 30px rgba(76,175,80,0.12); }
+  .card-icon { width: 62px; height: 62px; border-radius: 50%; border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 1.7rem; }
+  .card h3 { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.6rem; }
+  .card p { color: #999; line-height: 1.55; font-size: 0.88rem; }
 
-  /* WHY US */
-  #why {
-    padding: 5rem 2rem;
-    background: linear-gradient(135deg, #0d1f0d 0%, #0a0a0a 100%);
-  }
-  .why-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem; max-width: 900px; margin: 0 auto; text-align: center;
-  }
-  .why-item .num {
-    font-size: 3rem; font-weight: 900; color: var(--green); line-height: 1;
-  }
-  .why-item h4 { font-size: 1rem; font-weight: 700; margin-top: 0.5rem; text-transform: uppercase; }
-  .why-item p { color: #888; font-size: 0.9rem; margin-top: 0.25rem; }
+  /* WHY */
+  #why { padding: 5.5rem 2rem; background: linear-gradient(135deg, #0d1f0d 0%, #0a0a0a 100%); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; text-align: center; }
+  .why-item .num { font-size: 2.5rem; font-weight: 900; color: var(--green); line-height: 1; }
+  .why-item h4 { font-size: 0.95rem; font-weight: 700; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .why-item p { color: #777; font-size: 0.85rem; margin-top: 0.25rem; }
 
-  /* CONTACT / FORM */
-  #contact {
-    padding: 5rem 2rem;
-    background: var(--dark);
-  }
-  .contact-wrap {
-    max-width: 700px; margin: 0 auto;
-  }
-  .contact-info {
-    display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-bottom: 3rem;
-  }
+  /* CONTACT */
+  #contact { padding: 5.5rem 2rem; background: var(--dark); }
+  .contact-wrap { max-width: 680px; margin: 0 auto; }
+  .contact-info { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2.5rem; }
   .contact-chip {
-    background: #1a1a1a; border: 1px solid rgba(76,175,80,0.3);
-    border-radius: 50px; padding: 0.75rem 1.5rem;
-    display: flex; align-items: center; gap: 0.75rem; font-weight: 600;
+    background: #1a1a1a; border: 1px solid rgba(76,175,80,0.25);
+    border-radius: 50px; padding: 0.7rem 1.4rem;
+    display: flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 0.95rem;
   }
-  .contact-chip span { font-size: 1.2rem; }
   .contact-chip a { color: var(--white); text-decoration: none; }
   .contact-chip a:hover { color: var(--green); }
 
-  form { display: flex; flex-direction: column; gap: 1rem; }
-  form input, form textarea, form select {
-    background: #1a1a1a; border: 1px solid rgba(76,175,80,0.2);
-    border-radius: 4px; padding: 0.9rem 1rem; color: var(--white); font-size: 1rem;
-    outline: none; transition: border-color 0.2s; font-family: inherit;
+  form { display: flex; flex-direction: column; gap: 0.9rem; }
+  form input, form textarea {
+    background: #1a1a1a; border: 1px solid rgba(76,175,80,0.18);
+    border-radius: var(--radius); padding: 0.85rem 1rem; color: var(--white); font-size: 0.95rem;
+    outline: none; transition: border-color 0.2s; font-family: 'Inter', sans-serif;
     -webkit-user-select: text; user-select: text;
   }
-  form input:focus, form textarea:focus, form select:focus { border-color: var(--green); }
-  form select option { background: #1a1a1a; }
-  form textarea { resize: vertical; min-height: 120px; }
-  form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  form input:focus, form textarea:focus { border-color: var(--green); }
+  form textarea { resize: vertical; min-height: 110px; }
+  form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+  @media(max-width:600px){ form .row { grid-template-columns: 1fr; } }
+
+  /* Custom Select */
+  .select-wrap { position: relative; }
+  .select-wrap::after {
+    content: '▾'; position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+    color: var(--green); font-size: 1rem; pointer-events: none;
+  }
+  .select-wrap select {
+    width: 100%; appearance: none; -webkit-appearance: none;
+    background: #1a1a1a; border: 1px solid rgba(76,175,80,0.18);
+    border-radius: var(--radius); padding: 0.85rem 2.5rem 0.85rem 1rem;
+    color: var(--white); font-size: 0.95rem; outline: none; cursor: pointer;
+    transition: border-color 0.2s; font-family: 'Inter', sans-serif;
+    -webkit-user-select: text; user-select: text;
+  }
+  .select-wrap select:focus { border-color: var(--green); }
+  .select-wrap select option { background: #1a1a1a; color: var(--white); }
+
   form button {
     padding: 1rem; background: var(--green); color: #000; font-weight: 800;
-    font-size: 1rem; border: none; border-radius: 4px; cursor: pointer;
-    text-transform: uppercase; letter-spacing: 1px; transition: background 0.2s;
+    font-size: 1rem; border: none; border-radius: var(--radius); cursor: pointer;
+    text-transform: uppercase; letter-spacing: 1px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    font-family: 'Inter', sans-serif;
   }
-  form button:hover { background: var(--green-light); }
+  form button:hover { background: var(--green-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76,175,80,0.35); }
 
-  /* FOOTER */
   footer {
-    background: #000; border-top: 1px solid rgba(76,175,80,0.2);
-    padding: 1.5rem 2rem; text-align: center; color: #555; font-size: 0.85rem;
+    background: #000; border-top: 1px solid rgba(76,175,80,0.15);
+    padding: 1.5rem 2rem; text-align: center; color: #444; font-size: 0.82rem;
   }
   footer span { color: var(--green); }
-
-  @media (max-width: 600px) {
-    form .row { grid-template-columns: 1fr; }
-    nav ul { gap: 1rem; font-size: 0.85rem; }
-  }
 </style>
 </head>
 <body>
@@ -170,18 +162,23 @@
   <ul>
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Us</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact">Get a Quote</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div>
-    <img class="logo" src="IZACK LOGO.png" alt="Izack Rubbish & Garden Removal">
+  <div class="bg"></div>
+  <div class="bg-overlay"></div>
+  <div class="content">
+    <img class="logo" src="IZACK LOGO.png" alt="Izack">
+    <h1>RUBBISH &amp; <span>GARDEN</span><br>REMOVAL</h1>
     <p class="tagline">"Your Waste, Our Work"</p>
-    <p>Fast, reliable rubbish and garden removal — household, garage, building waste, green refuse and more.</p>
-    <br>
-    <a href="#contact" class="btn">Get a Free Quote</a>
+    <p>Fast, reliable waste removal across the region — household, garden, building and commercial. We show up, we clear up.</p>
+    <div class="btn-group">
+      <a href="#contact" class="btn btn-primary">Get a Quote</a>
+      <a href="#services" class="btn btn-outline">Learn More</a>
+    </div>
   </div>
 </section>
 
@@ -193,17 +190,32 @@
     <div class="card">
       <div class="card-icon">🗑️</div>
       <h3>Rubbish Removal</h3>
-      <p>Household, garage, and building waste cleared quickly and responsibly. No job too big or too small.</p>
+      <p>Household, garage &amp; building waste cleared fast and responsibly.</p>
     </div>
     <div class="card">
       <div class="card-icon">🌿</div>
-      <h3>Garden Refuse Removal</h3>
-      <p>Branches, leaves, grass clippings, and all green waste — we leave your garden clean and tidy.</p>
+      <h3>Garden Refuse</h3>
+      <p>Branches, leaves, grass &amp; green waste — garden left spotless.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏗️</div>
+      <h3>Building &amp; Rubble</h3>
+      <p>Post-renovation rubble, tiles &amp; construction debris removed.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏢</div>
+      <h3>Commercial Cleanouts</h3>
+      <p>Office, retail &amp; industrial waste managed on your schedule.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📦</div>
+      <h3>Furniture &amp; Appliances</h3>
+      <p>Old furniture, white goods &amp; bulk items cleared in one trip.</p>
     </div>
     <div class="card">
       <div class="card-icon">🚛</div>
-      <h3>Reliable & Fast</h3>
-      <p>We show up on time and get the job done. Clean spaces, healthier environments — every time.</p>
+      <h3>Same-Day Collection</h3>
+      <p>Call us today, we're there today — fast turnaround guaranteed.</p>
     </div>
   </div>
 </section>
@@ -216,22 +228,22 @@
     <div class="why-item">
       <div class="num">✓</div>
       <h4>Same-Day Service</h4>
-      <p>Call us and we're there</p>
+      <p>Call us, we're there</p>
     </div>
     <div class="why-item">
       <div class="num">✓</div>
       <h4>Fair Pricing</h4>
-      <p>No hidden fees, honest quotes</p>
+      <p>No hidden fees ever</p>
     </div>
     <div class="why-item">
       <div class="num">✓</div>
       <h4>Eco-Friendly</h4>
-      <p>Responsible waste disposal</p>
+      <p>Responsible disposal</p>
     </div>
     <div class="why-item">
       <div class="num">✓</div>
       <h4>Fully Equipped</h4>
-      <p>Right tools for every job</p>
+      <p>Right truck, every job</p>
     </div>
   </div>
 </section>
@@ -242,8 +254,8 @@
     <h2 class="section-title">Get In <span>Touch</span></h2>
     <div class="divider"></div>
     <div class="contact-info">
-      <div class="contact-chip"><span>📞</span><a href="tel:0762735805">076 273 5805</a></div>
-      <div class="contact-chip"><span>✉️</span><a href="mailto:izackmaintenance@gmail.com">izackmaintenance@gmail.com</a></div>
+      <div class="contact-chip">📞 <a href="tel:0762735805">076 273 5805</a></div>
+      <div class="contact-chip">✉️ <a href="mailto:izackmaintenance@gmail.com">izackmaintenance@gmail.com</a></div>
     </div>
 
     <form action="https://formsubmit.co/izackmaintenance@gmail.com" method="POST">
@@ -251,31 +263,35 @@
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
       <div class="row">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <input type="text" name="name" placeholder="Your Name *" required>
+        <input type="tel" name="phone" placeholder="Phone Number *" required>
       </div>
-      <input type="email" name="email" placeholder="Email Address" required>
-      <select name="service" required>
-        <option value="" disabled selected>Select a Service</option>
-        <option value="Rubbish Removal">Rubbish Removal</option>
-        <option value="Garden Refuse Removal">Garden Refuse Removal</option>
-        <option value="Both">Both Services</option>
-        <option value="Other">Other / Not Sure</option>
-      </select>
-      <textarea name="message" placeholder="Tell us about the job — location, size, any details..."></textarea>
-      <button type="submit">Send Quote Request</button>
+      <input type="email" name="email" placeholder="Email Address (optional)">
+      <div class="select-wrap">
+        <select name="service" required>
+          <option value="" disabled selected>Select a Service *</option>
+          <option value="Rubbish Removal">Rubbish Removal</option>
+          <option value="Garden Refuse Removal">Garden Refuse Removal</option>
+          <option value="Building & Rubble Removal">Building &amp; Rubble Removal</option>
+          <option value="Furniture & Appliance Removal">Furniture &amp; Appliance Removal</option>
+          <option value="Commercial / Corporate Cleanout">Commercial / Corporate Cleanout</option>
+          <option value="Full Property Cleanout">Full Property Cleanout</option>
+          <option value="Multiple Services">Multiple Services</option>
+          <option value="Not Sure / Other">Not Sure / Other</option>
+        </select>
+      </div>
+      <textarea name="message" placeholder="Tell us about the job — location, size, any details... *" required></textarea>
+      <button type="submit">Send Quote Request →</button>
     </form>
   </div>
 </section>
 
 <footer>
-  &copy; 2026 <span>Izack Rubbish & Garden Removal</span> · All rights reserved · 076 273 5805
+  &copy; 2026 <span>Izack Rubbish &amp; Garden Removal</span> &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; 076 273 5805
 </footer>
 
 <script>
-  // Disable right-click
   document.addEventListener('contextmenu', e => e.preventDefault());
-  // Disable drag on images
   document.querySelectorAll('img').forEach(i => i.addEventListener('dragstart', e => e.preventDefault()));
 </script>
 </body>
