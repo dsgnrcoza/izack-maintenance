@@ -87,14 +87,17 @@
   .tagline-top { font-style: italic; font-size: 1rem; color: var(--green); font-weight: 700; letter-spacing: 1px; margin-bottom: 0.9rem; }
 
   /* Logo + S headline */
-  .hero-logo-line { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 0.15rem; }
-  .hero-brand {
-    font-size: clamp(2.6rem, 8vw, 5.5rem); font-weight: 900; color: var(--white);
-    font-family: Arial, Helvetica, sans-serif; line-height: 1; letter-spacing: -1px;
-    font-style: italic; text-transform: uppercase;
-    text-shadow: 0 0 30px rgba(76,175,80,0.3);
+  .hero-logo-line { display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 0.15rem; }
+  .logo-clip {
+    height: clamp(2.6rem, 8vw, 5.5rem);
+    overflow: hidden;
+    display: flex; align-items: center;
   }
-  .hero-brand .leaf { color: var(--green); font-style: normal; }
+  .logo-clip img {
+    height: calc(clamp(2.6rem, 8vw, 5.5rem) * 2.2);
+    width: auto;
+    display: block;
+  }
   .hero-s {
     font-size: clamp(2.6rem, 8vw, 5.5rem); font-weight: 900; color: var(--white);
     font-family: Arial, Helvetica, sans-serif; line-height: 1; letter-spacing: -1px;
@@ -219,7 +222,7 @@
   <div class="content">
     <p class="tagline-top">"Your Waste, Our Work"</p>
     <div class="hero-logo-line">
-      <span class="hero-brand">IZ<span class="leaf">▲</span>CK</span><span class="hero-s">'S</span>
+      <div class="logo-clip"><img src="IZACK LOGO.png" alt="Izack"></div><span class="hero-s">'S</span>
     </div>
     <h1 class="hero-sub">RUBBISH &amp; <span>GARDEN</span><br>REMOVAL</h1>
     <p class="desc">Fast, reliable waste removal — household, garden, building &amp; commercial. We show up, we clear up.</p>
