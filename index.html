@@ -87,8 +87,8 @@
   .tagline-top { font-style: italic; font-size: 1rem; color: var(--green); font-weight: 700; letter-spacing: 1px; margin-bottom: 0.9rem; }
 
   /* Logo + S headline */
-  .hero-logo-line { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 0.15rem; }
-  .hero-logo-line img { height: clamp(52px, 10vw, 88px); mix-blend-mode: screen; }
+  .hero-logo-line { display: flex; align-items: center; justify-content: center; gap: 2px; margin-bottom: 0.15rem; }
+  .hero-logo-line img { height: clamp(2.6rem, 8vw, 5.5rem); display: block; }
   .hero-s {
     font-size: clamp(2.6rem, 8vw, 5.5rem); font-weight: 900; color: var(--white);
     font-family: Arial, Helvetica, sans-serif; line-height: 1; letter-spacing: -1px;
@@ -300,6 +300,26 @@
   document.getElementById('burgerBtn').addEventListener('click', () => menu.classList.add('open'));
   document.getElementById('menuClose').addEventListener('click', () => menu.classList.remove('open'));
   document.querySelectorAll('.menu-link').forEach(l => l.addEventListener('click', () => menu.classList.remove('open')));
+
+  // Remove black background from logo images using canvas
+  function removeBlackBg(img) {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    const d = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < d.data.length; i += 4) {
+      if (d.data[i] < 45 && d.data[i+1] < 45 && d.data[i+2] < 45) d.data[i+3] = 0;
+    }
+    ctx.putImageData(d, 0, 0);
+    img.src = canvas.toDataURL('image/png');
+  }
+
+  document.querySelectorAll('img').forEach(img => {
+    if (img.complete && img.naturalWidth) removeBlackBg(img);
+    else img.addEventListener('load', () => removeBlackBg(img));
+  });
 </script>
 </body>
 </html>
