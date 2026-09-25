@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Izack Rubbish & Garden Removal</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --black: #0a0a0a;
@@ -70,7 +70,7 @@
   /* ── HERO ── */
   #hero {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    text-align: center; padding: 6.5rem 2rem 4rem;
+    text-align: center; padding: 2rem;
     position: relative; overflow: hidden;
   }
   #hero .bg {
@@ -83,7 +83,7 @@
     position: absolute; inset: 0; z-index: 1;
     background: linear-gradient(160deg, rgba(10,10,10,0.6) 0%, rgba(10,28,10,0.5) 100%);
   }
-  #hero .content { position: relative; z-index: 2; max-width: 750px; }
+  #hero .content { position: relative; z-index: 2; max-width: 900px; width: 100%; margin: 0 auto; }
 
   .tagline-top { font-style: italic; font-size: 1rem; color: var(--green); font-weight: 700; letter-spacing: 1px; margin-bottom: 0.9rem; }
 
@@ -106,8 +106,9 @@
   }
 
   .hero-sub {
-    font-size: var(--hs); font-weight: 900;
-    letter-spacing: 2px; text-transform: uppercase; line-height: 1.05; margin-bottom: 0.7rem;
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: var(--hs); font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; line-height: 1.05; margin-bottom: 0.7rem;
     white-space: nowrap;
   }
   @media(max-width: 600px){ .hero-sub { white-space: normal; } }
