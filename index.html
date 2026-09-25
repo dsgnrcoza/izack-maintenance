@@ -74,10 +74,11 @@
     position: relative; overflow: hidden;
   }
   #hero .bg {
-    position: absolute; inset: 0; z-index: 0;
+    position: absolute; inset: -30%; z-index: 0;
     background-image: url('2012.i101.019_garbage_recycling_isometric.jpg');
     background-size: cover; background-position: center;
     filter: brightness(0.45) saturate(0.75);
+    will-change: transform;
   }
   #hero .bg-overlay {
     position: absolute; inset: 0; z-index: 1;
@@ -192,6 +193,37 @@
     .burger { display: flex; }
     #mobile-menu { display: flex; }
   }
+
+  /* ── SERVICE MODAL ── */
+  .card { cursor: pointer; }
+  #modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  #modal-overlay.open { display: flex; }
+  #modal-box {
+    background: #161616; border: 1px solid rgba(76,175,80,0.35);
+    border-radius: 14px; padding: 2.5rem 2rem; max-width: 480px; width: 100%;
+    text-align: center; position: relative; animation: popIn 0.22s ease;
+  }
+  @keyframes popIn { from { transform: scale(0.88); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  #modal-box .m-close {
+    position: absolute; top: 1rem; right: 1.2rem; font-size: 1.4rem;
+    color: #888; cursor: pointer; background: none; border: none; line-height: 1;
+  }
+  #modal-box .m-close:hover { color: var(--white); }
+  #modal-box img { height: 40px; mix-blend-mode: screen; margin-bottom: 1.2rem; }
+  #modal-box .m-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+  #modal-box h3 { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.8rem; }
+  #modal-box p { color: #aaa; line-height: 1.7; font-size: 0.95rem; }
+
+  /* ── CONTACT ICONS ── */
+  .contact-chip .icon-phone { color: var(--green); font-size: 1.3rem; }
+  .contact-chip .icon-email {
+    display: inline-block; width: 1.3rem; height: 1rem;
+    background: none; position: relative; font-size: 1.3rem;
+  }
 </style>
 </head>
 <body>
@@ -246,12 +278,12 @@
   <h2 class="section-title">Our <span>Services</span></h2>
   <div class="divider"></div>
   <div class="services-grid">
-    <div class="card"><div class="card-icon">🗑️</div><h3>Rubbish Removal</h3><p>Household, garage &amp; building waste cleared fast.</p></div>
-    <div class="card"><div class="card-icon">🌿</div><h3>Garden Refuse</h3><p>Branches, leaves &amp; green waste — garden left spotless.</p></div>
-    <div class="card"><div class="card-icon">🏗️</div><h3>Building &amp; Rubble</h3><p>Post-renovation rubble &amp; construction debris removed.</p></div>
-    <div class="card"><div class="card-icon">🏢</div><h3>Commercial Cleanouts</h3><p>Office &amp; industrial waste managed on your schedule.</p></div>
-    <div class="card"><div class="card-icon">📦</div><h3>Furniture &amp; Appliances</h3><p>Bulk items &amp; white goods cleared in one trip.</p></div>
-    <div class="card"><div class="card-icon">🚛</div><h3>Same-Day Collection</h3><p>Call us today — we're there today, guaranteed.</p></div>
+    <div class="card" data-icon="🗑️" data-title="Rubbish Removal" data-desc="We handle all household, garage, and building waste — no matter the size of the job. From a single bag to a full property cleanout, we arrive on time, load everything up, and dispose of it responsibly. Leave the heavy lifting to us."><div class="card-icon">🗑️</div><h3>Rubbish Removal</h3><p>Household, garage &amp; building waste cleared fast.</p></div>
+    <div class="card" data-icon="🌿" data-title="Garden Refuse" data-desc="Branches, leaves, grass clippings, palm fronds, and all types of green waste — we clear it all and leave your outdoor space clean and ready to enjoy. Perfect after a big garden clean-up or storm damage."><div class="card-icon">🌿</div><h3>Garden Refuse</h3><p>Branches, leaves &amp; green waste — garden left spotless.</p></div>
+    <div class="card" data-icon="🏗️" data-title="Building &amp; Rubble" data-desc="Post-renovation rubble, broken tiles, plaster, timber, and construction debris removed safely and efficiently. We work alongside contractors and homeowners to keep sites clean and compliant."><div class="card-icon">🏗️</div><h3>Building &amp; Rubble</h3><p>Post-renovation rubble &amp; construction debris removed.</p></div>
+    <div class="card" data-icon="🏢" data-title="Commercial Cleanouts" data-desc="We partner with offices, retail stores, warehouses, and industrial sites to manage waste on a schedule that suits your operations. Discreet, efficient, and fully equipped for large-volume jobs."><div class="card-icon">🏢</div><h3>Commercial Cleanouts</h3><p>Office &amp; industrial waste managed on your schedule.</p></div>
+    <div class="card" data-icon="📦" data-title="Furniture &amp; Appliances" data-desc="Old couches, beds, fridges, washing machines, and bulk items cleared in a single trip. We handle the carrying, loading, and disposal — no stress, no damage to your property."><div class="card-icon">📦</div><h3>Furniture &amp; Appliances</h3><p>Bulk items &amp; white goods cleared in one trip.</p></div>
+    <div class="card" data-icon="🚛" data-title="Same-Day Collection" data-desc="Need it gone today? Call us before noon and we'll do our best to be there the same day. We're fast, reliable, and ready — because waiting around isn't something you should have to do."><div class="card-icon">🚛</div><h3>Same-Day Collection</h3><p>Call us today — we're there today, guaranteed.</p></div>
   </div>
 </section>
 
@@ -273,8 +305,8 @@
     <h2 class="section-title">Get In <span>Touch</span></h2>
     <div class="divider"></div>
     <div class="contact-info">
-      <div class="contact-chip">📞 <a href="tel:0762735805">076 273 5805</a></div>
-      <div class="contact-chip">✉️ <a href="mailto:izackmaintenance@gmail.com">izackmaintenance@gmail.com</a></div>
+      <div class="contact-chip"><span class="icon-phone">📞</span><a href="tel:0762735805">076 273 5805</a></div>
+      <div class="contact-chip"><svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><rect x="1" y="1" width="18" height="14" rx="2" stroke="white" stroke-width="1.5"/><path d="M1 4l9 6 9-6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg><a href="mailto:izackmaintenance@gmail.com">izackmaintenance@gmail.com</a></div>
     </div>
     <form action="https://formsubmit.co/izackmaintenance@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="New Quote Request - Izack Website">
@@ -304,6 +336,17 @@
   </div>
 </section>
 
+<!-- SERVICE MODAL -->
+<div id="modal-overlay">
+  <div id="modal-box">
+    <button class="m-close" id="modalClose">✕</button>
+    <img src="IZACK LOGO.png" alt="Izack">
+    <div class="m-icon" id="mIcon"></div>
+    <h3 id="mTitle"></h3>
+    <p id="mDesc"></p>
+  </div>
+</div>
+
 <footer>
   &copy; 2026 <span>Izack Rubbish &amp; Garden Removal</span> &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; 076 273 5805
 </footer>
@@ -312,10 +355,30 @@
   document.addEventListener('contextmenu', e => e.preventDefault());
   document.querySelectorAll('img').forEach(i => i.addEventListener('dragstart', e => e.preventDefault()));
 
+  // Mobile menu
   const menu = document.getElementById('mobile-menu');
   document.getElementById('burgerBtn').addEventListener('click', () => menu.classList.add('open'));
   document.getElementById('menuClose').addEventListener('click', () => menu.classList.remove('open'));
   document.querySelectorAll('.menu-link').forEach(l => l.addEventListener('click', () => menu.classList.remove('open')));
+
+  // Parallax
+  const heroBg = document.querySelector('#hero .bg');
+  window.addEventListener('scroll', () => {
+    heroBg.style.transform = `translateY(${window.scrollY * 0.4}px)`;
+  }, { passive: true });
+
+  // Service modal
+  const overlay = document.getElementById('modal-overlay');
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.getElementById('mIcon').textContent = card.dataset.icon;
+      document.getElementById('mTitle').textContent = card.dataset.title;
+      document.getElementById('mDesc').textContent = card.dataset.desc;
+      overlay.classList.add('open');
+    });
+  });
+  document.getElementById('modalClose').addEventListener('click', () => overlay.classList.remove('open'));
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
 
   // Remove black background from logo images using canvas
   function removeBlackBg(img) {
